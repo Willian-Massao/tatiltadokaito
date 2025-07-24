@@ -41,7 +41,6 @@ client.on('messageCreate', async (message) => {
     const user = await client.users.fetch(process.env.KAITO);
     const teste = Math.random();
 
-    console.log(teste);
 
     if (message.author.bot) return;
     
@@ -50,7 +49,6 @@ client.on('messageCreate', async (message) => {
     if (message.channel.id !== process.env.CHANNEL_TARGET) return;
 
     if (teste > 0.1) return;
-    console.log(teste < 0.1);
 
     await user.send("Ta Tiltado Kaito ?👀");
 });
