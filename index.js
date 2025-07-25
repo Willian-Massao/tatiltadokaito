@@ -40,17 +40,25 @@ client.on(Events.ClientReady, readyClient => {
 client.on('messageCreate', async (message) => {
     const user = await client.users.fetch(process.env.KAITO);
     const teste = Math.random();
-
-
     if (message.author.bot) return;
     
     if (message.author.id !== process.env.KAITO) return;
     
     if (message.channel.id !== process.env.CHANNEL_TARGET) return;
-
+    
     if (teste > 0.1) return;
 
-    await user.send("Ta Tiltado Kaito ?👀");
+    //console.log(`Message from ${message.author.tag}: ${message.content}`);
+
+    await message.react("✅");
+    await message.react("✝️");
+    await message.react('🇮');
+    await message.react('🇱');
+    await message.react('🇹');
+    await message.react('🇦');
+    await message.react('🇩');
+    await message.react('🇴');
+
 });
 
 client.login(process.env.DISCORD_TOKEN);
