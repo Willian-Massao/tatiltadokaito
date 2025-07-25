@@ -48,16 +48,19 @@ client.on('messageCreate', async (message) => {
     
     if (teste > 0.1) return;
 
+    const kaitoMessage = await message.channel.messages.fetch({ limit: 100 }); // busca as últimas 100 mensagens do canal
+    const lastMessageFromUser = kaitoMessage.find(msg => msg.author.id === process.env.KAITO);
+
     //console.log(`Message from ${message.author.tag}: ${message.content}`);
 
-    await message.react("✅");
-    await message.react("✝️");
-    await message.react('🇮');
-    await message.react('🇱');
-    await message.react('🇹');
-    await message.react('🇦');
-    await message.react('🇩');
-    await message.react('🇴');
+    await lastMessageFromUser.react("✅");
+    await lastMessageFromUser.react("✝️");
+    await lastMessageFromUser.react('🇮');
+    await lastMessageFromUser.react('🇱');
+    await lastMessageFromUser.react('🇹');
+    await lastMessageFromUser.react('🇦');
+    await lastMessageFromUser.react('🇩');
+    await lastMessageFromUser.react('🇴');
 
 });
 
