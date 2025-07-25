@@ -40,28 +40,30 @@ client.on(Events.ClientReady, readyClient => {
 client.on('messageCreate', async (message) => {
     const user = await client.users.fetch(process.env.KAITO);
     const teste = Math.random();
+
     if (message.author.bot) return;
     
     if (message.author.id !== process.env.KAITO) return;
     
     if (message.channel.id !== process.env.CHANNEL_TARGET) return;
     
-    if (teste > 0.1) return;
-
+    if (teste > 1) return
     const kaitoMessage = await message.channel.messages.fetch({ limit: 100 }); // busca as últimas 100 mensagens do canal
-    const lastMessageFromUser = kaitoMessage.find(msg => msg.author.id === process.env.KAITO);
+    const lastMessageFromUser = kaitoMessage.find(msg => msg.author.id === process.env.KAITO)
 
-    //console.log(`Message from ${message.author.tag}: ${message.content}`);
+    await lastMessageFromUser.react("✅"),
+    await lastMessageFromUser.react("✝️"),
+    await lastMessageFromUser.react('🇮'),
+    await lastMessageFromUser.react('🇱'),
+    await lastMessageFromUser.react('🇹'),
+    await lastMessageFromUser.react('🇦'),
+    await lastMessageFromUser.react('🇩'),
+    await lastMessageFromUser.react('🇴'),
 
-    await lastMessageFromUser.react("✅");
-    await lastMessageFromUser.react("✝️");
-    await lastMessageFromUser.react('🇮');
-    await lastMessageFromUser.react('🇱');
-    await lastMessageFromUser.react('🇹');
-    await lastMessageFromUser.react('🇦');
-    await lastMessageFromUser.react('🇩');
-    await lastMessageFromUser.react('🇴');
-
+    await message.reply({ content: `Tu ta tiltado ???? <@${process.env.KAITO}>`, allowedMentions: { users: [process.env.KAITO] }, ephemeral: true });
 });
+
+
+
 
 client.login(process.env.DISCORD_TOKEN);
